@@ -1,0 +1,116 @@
+[
+  {
+    "BorrowerHistoryId": 1,
+    "Book": {
+      "BookId": 1,
+      "Name": "B1",
+      "Author": "A1",
+      "NumberOfCopies": 10,
+      "Pages": 100
+    },
+    "BookId": 1,
+    "Borrower": {
+      "BorrowerId": 1,
+      "Name": "Br1",
+      "Email": "br1@b.com"
+    },
+    "BorrowerId": 1,
+    "StartDate": "2024-05-09T00:00:00",
+    "EndDate": "2024-06-09T00:00:00"
+  },
+  {
+    "BorrowerHistoryId": 2,
+    "Book": {
+      "BookId": 2,
+      "Name": "B2",
+      "Author": "A2",
+      "NumberOfCopies": 5,
+      "Pages": 200
+    },
+    "BookId": 2,
+    "Borrower": {
+      "BorrowerId": 2,
+      "Name": "Br2",
+      "Email": "br2@b.com"
+    },
+    "BorrowerId": 2,
+    "StartDate": "2024-07-09T00:00:00",
+    "EndDate": "2024-08-09T00:00:00"
+  },
+  {
+    "BorrowerHistoryId": 3,
+    "Book": {
+      "BookId": 3,
+      "Name": "B3",
+      "Author": "A3",
+      "NumberOfCopies": 10,
+      "Pages": 250
+    },
+    "BookId": 3,
+    "Borrower": {
+      "BorrowerId": 3,
+      "Name": "Br3",
+      "Email": "br3@b.com"
+    },
+    "BorrowerId": 3,
+    "StartDate": "2024-09-09T00:00:00",
+    "EndDate": "2024-10-09T00:00:00"
+  },
+  {
+    "BorrowerHistoryId": 4,
+    "Book": {
+      "BookId": 4,
+      "Name": "B4",
+      "Author": "A4",
+      "NumberOfCopies": 5,
+      "Pages": 300
+    },
+    "BookId": 4,
+    "Borrower": {
+      "BorrowerId": 4,
+      "Name": "Br4",
+      "Email": "br4@b.com"
+    },
+    "BorrowerId": 4,
+    "StartDate": "2024-11-09T00:00:00",
+    "EndDate": "2024-12-09T00:00:00"
+  },
+  {
+    "BorrowerHistoryId": 5,
+    "Book": {
+      "BookId": 2,
+      "Name": "B2",
+      "Author": "A2",
+      "NumberOfCopies": 5,
+      "Pages": 200
+    },
+    "BookId": 2,
+    "Borrower": {
+      "BorrowerId": 1,
+      "Name": "Br1",
+      "Email": "br1@b.com"
+    },
+    "BorrowerId": 1,
+    "StartDate": "2024-01-09T00:00:00",
+    "EndDate": "2024-02-09T00:00:00"
+  },
+  {
+    "BorrowerHistoryId": 6,
+    "Book": {
+      "BookId": 4,
+      "Name": "B4",
+      "Author": "A4",
+      "NumberOfCopies": 5,
+      "Pages": 300
+    },
+    "BookId": 4,
+    "Borrower": {
+      "BorrowerId": 1,
+      "Name": "Br1",
+      "Email": "br1@b.com"
+    },
+    "BorrowerId": 1,
+    "StartDate": "2024-03-09T00:00:00",
+    "EndDate": "2024-04-09T00:00:00"
+  }
+]
