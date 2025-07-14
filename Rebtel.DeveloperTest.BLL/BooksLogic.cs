@@ -33,11 +33,14 @@ namespace Rebtel.DeveloperTest.BLL
             return mapper.Map<BookSL>(maxBook);
         }
 
-        public int CalculateReadingRate(int bookId)
+        public async Task<int> CalculateReadingRate(int bookId)
         {
-            var borrowHistory = LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId).ToList();
+            var borrowHistory = await LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId).ToListAsync();
             int totalDays = CalculateDays(borrowHistory);
-            return (int)borrowHistory.First().Book.Pages / totalDays;
+            if (totalDays == 0) return 0;
+            var book = await LibraryContext.Books.Where(x => x.BookId == bookId).FirstOrDefaultAsync();
+            if(book == null) return 0;
+            return (int)book.Pages / totalDays;
         }
 
         private int CalculateDays(List<BorrowerHistory> borrowHistories)

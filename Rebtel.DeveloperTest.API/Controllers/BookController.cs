@@ -58,5 +58,40 @@ namespace Rebtel.DeveloperTest.API.Controllers
                 _logger.LogInof($"GetAvailableBooks took {watch.ElapsedMilliseconds} ms, request with bookId {bookId}");
             }
         }
+
+
+        [HttpGet]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+        [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<string>> GetReadingRate(int bookId, CancellationToken cancellationToken)
+        {
+            var watch = Stopwatch.StartNew();
+
+            try
+            {
+                var request = new BookRequest() { BookId = bookId };
+                var readingRate = await _mediator.Send<int>(request, cancellationToken);
+                if (readingRate == 0)
+                {
+                    return NoContent();
+                }
+                return Ok($"Reading rate {readingRate} page per day");
+            }
+            catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest("Call Cancled");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            finally
+            {
+                _logger.LogInof($"GetReadingRate took {watch.ElapsedMilliseconds} ms, request with bookId {bookId}");
+            }
+        }
     }
 }
