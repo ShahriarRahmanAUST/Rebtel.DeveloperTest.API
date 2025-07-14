@@ -5,6 +5,6 @@
 
         public  Task<BookSL> GetMaxBook();
 
-        public AvaiableBook? GetAvailableBook(int bookId);
+        public Task<AvaiableBook> GetAvailableBook(int bookId);
     }
 }

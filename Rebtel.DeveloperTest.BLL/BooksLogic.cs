@@ -11,15 +11,15 @@ namespace Rebtel.DeveloperTest.BLL
             LibraryContext = libraryContext;
         }
 
-        public AvaiableBook? GetAvailableBook(int bookId)
+        public async Task<AvaiableBook> GetAvailableBook(int bookId)
         {
-            var book = LibraryContext.Books.Where(x => x.BookId == bookId).FirstOrDefault();
-            if (book == null) return null;
-            var totalBorowod = LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId && x.EndDate == null).ToList();
+            var book = await LibraryContext.Books.Where(x => x.BookId == bookId).FirstOrDefaultAsync();
+            if (book == null) return new AvaiableBook { TotalBook = 0, TotalBorrowerd = 0}; 
+            var totalBorrowed = await LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId && x.EndDate == null).ToListAsync();
             var totalBorrowedCount = 0;
-            if (totalBorowod.Any())
+            if (totalBorrowed.Any())
             {
-                totalBorrowedCount = totalBorowod.Count();
+                totalBorrowedCount = totalBorrowed.Count();
             }
 
             return new AvaiableBook { BookId = bookId, TotalBook = book.NumberOfCopies, TotalBorrowerd = totalBorrowedCount };

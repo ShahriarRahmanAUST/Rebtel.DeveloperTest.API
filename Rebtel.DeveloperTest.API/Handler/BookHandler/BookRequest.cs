@@ -3,7 +3,7 @@ using Rebtel.DeveloperTest.BLL;
 
 namespace Rebtel.DeveloperTest.API.Handler.BookHandler
 {
-    public class BookRequest : IRequest<Microsoft.AspNetCore.Mvc.ActionResult<string>>, IRequest<BookSL>
+    public class BookRequest : IRequest<AvaiableBook>
     {
         public int BookId { get; set; }
     }

@@ -1,4 +1,5 @@
 using MediatR;
+using Rebtel.DeveloperTest.API.Logger;
 using Rebtel.DeveloperTest.BLL;
 using Rebtel.DeveloperTest.SL;
 
@@ -16,6 +17,7 @@ builder.Services.AddOpenApi();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<ILogMessage, ConsoleLogger>();
 builder.Services.AddMediatR(typeof(Program).Assembly);
 var app = builder.Build();
 
