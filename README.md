@@ -42,4 +42,4 @@ Integration test project : Rebtel.DeveloperTest.SL.IntegrationTest
 
 **Warm-Up tasks :
 
-Those task can be found as a static class inside Rebtel.DeveloperTest.WarmUpTasks. Set up a test project Rebtel.DeveloperTest.WarmUpTasks.UnitTest to test the methods
+Those task can be found as a static class inside Rebtel.DeveloperTest.WarmUpTasks. Set up a test project Rebtel.DeveloperTest.WarmUpTasks.UnitTest to test the methods.
