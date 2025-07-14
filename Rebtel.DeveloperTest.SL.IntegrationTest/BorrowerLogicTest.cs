@@ -18,7 +18,7 @@ namespace Rebtel.DeveloperTest.SL.UnitTest
         public void BookListByBorrowerShouldReturnListOfBooksAndExcluedOneBook()
         {
             var result = _sut.BookListByBorrower(1, 1);
-            Assert.AreEqual(result.Count, 2);
+            Assert.AreEqual(result.Result.Count, 2);
         }
     }
 }

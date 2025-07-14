@@ -17,6 +17,7 @@ namespace Rebtel.DeveloperTest.BLL
             if (book == null) return new AvaiableBook { TotalBook = 0, TotalBorrowerd = 0}; 
             var totalBorrowed = await LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId && x.EndDate == null).ToListAsync();
             var totalBorrowedCount = 0;
+            var xx = JsonSerializer.Serialize(LibraryContext.Books.ToList());
             if (totalBorrowed.Any())
             {
                 totalBorrowedCount = totalBorrowed.Count();

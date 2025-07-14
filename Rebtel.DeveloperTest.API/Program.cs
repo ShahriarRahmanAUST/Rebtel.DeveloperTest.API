@@ -8,8 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 DbContextFactory dbContextFactory = new DbContextFactory();
-dbContextFactory.CreateContext(builder.Services);
+dbContextFactory.RegisterDBContext(builder.Services);
 builder.Services.AddSingleton<IBookLogic, BooksLogic>();
+builder.Services.AddSingleton<IBorrowerLogic, BorrowerLogic>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
