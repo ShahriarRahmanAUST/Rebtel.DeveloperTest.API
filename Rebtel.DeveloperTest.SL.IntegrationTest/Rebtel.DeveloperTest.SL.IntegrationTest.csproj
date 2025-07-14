@@ -1,4 +1,4 @@
-<Project Sdk="MSTest.Sdk/3.6.4">
+﻿<Project Sdk="MSTest.Sdk/3.6.4">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Rebtel.DeveloperTest.DAL.csproj" />
     <ProjectReference Include="..\Rebtel.DeveloperTest.BLL\Rebtel.DeveloperTest.SL.csproj" />
+    <ProjectReference Include="..\Rebtel.DeveloperTest.DAL\Rebtel.DeveloperTest.DAL.csproj" />
   </ItemGroup>
 
 </Project>

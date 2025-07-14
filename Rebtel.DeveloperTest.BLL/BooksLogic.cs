@@ -8,10 +8,7 @@ namespace Rebtel.DeveloperTest.BLL
         public readonly ILibraryContext LibraryContext;
         public BooksLogic(ILibraryContext libraryContext)
         {
-
             LibraryContext = libraryContext;
-
-
         }
 
         public AvaiableBook? GetAvailableBook(int bookId)

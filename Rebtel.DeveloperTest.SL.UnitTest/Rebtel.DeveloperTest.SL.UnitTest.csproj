@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Rebtel.DeveloperTest.DAL.csproj" />
     <ProjectReference Include="..\Rebtel.DeveloperTest.BLL\Rebtel.DeveloperTest.SL.csproj" />
+    <ProjectReference Include="..\Rebtel.DeveloperTest.DAL\Rebtel.DeveloperTest.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
