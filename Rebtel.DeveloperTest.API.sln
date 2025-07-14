@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rebtel.DeveloperTest.SL.Int
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rebtel.DeveloperTest.DAL", "Rebtel.DeveloperTest.DAL\Rebtel.DeveloperTest.DAL.csproj", "{0C9FF427-43D6-9232-9066-0CEFF7F4033B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rebtel.DeveloperTest.WarmUpTasks", "Rebtel.DeveloperTest.WarmUpTasks\Rebtel.DeveloperTest.WarmUpTasks.csproj", "{B464FA36-D18C-2E92-3DC7-74A2799C322F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rebtel.DeveloperTest.WarmUpTasks.UnitTest", "Rebtel.DeveloperTest.WarmUpTasks.UnitTest\Rebtel.DeveloperTest.WarmUpTasks.UnitTest.csproj", "{E18F368F-6C6E-4959-BFC7-8CA761CEF285}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{0C9FF427-43D6-9232-9066-0CEFF7F4033B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C9FF427-43D6-9232-9066-0CEFF7F4033B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C9FF427-43D6-9232-9066-0CEFF7F4033B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B464FA36-D18C-2E92-3DC7-74A2799C322F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B464FA36-D18C-2E92-3DC7-74A2799C322F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B464FA36-D18C-2E92-3DC7-74A2799C322F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B464FA36-D18C-2E92-3DC7-74A2799C322F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E18F368F-6C6E-4959-BFC7-8CA761CEF285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E18F368F-6C6E-4959-BFC7-8CA761CEF285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E18F368F-6C6E-4959-BFC7-8CA761CEF285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E18F368F-6C6E-4959-BFC7-8CA761CEF285}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
