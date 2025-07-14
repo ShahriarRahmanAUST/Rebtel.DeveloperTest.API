@@ -1,3 +1,34 @@
 # Rebtel.DeveloperTest.API
 
+**Setting up the code base : 
+
+1) Clone the repository.
+2) Open in Visual studio 2022 (or later). Mostly used .net 9.0
+3) Restore Nuget.
+
+**Setting up Database :
+
+1)Open Tools > NuGet Package Manager > Package Manager Console
+2)Run the following command on Rebtel.DeveloperTest.DAL
+   Install-Package Microsoft.EntityFrameworkCore.Tools
+   Add-Migration InitialCreate
+   Update-Database
+
+
+**Run the application and testing the APIs
+A launcher profile has been set for running the API project 
+
+
+"Rebtel.DeveloperTest.API": {
+  "commandName": "Project",
+  "dotnetRunMessages": true,
+  "launchBrowser": true,
+  "launchUrl": "swagger",
+  "applicationUrl": "https://localhost:7187;http://localhost:5187",
+  "environmentVariables": {
+    "ASPNETCORE_ENVIRONMENT": "Development"
+  }
+
+After running, a swagger url should appear in a browers. We can test the Apis from the browser. 
+Very limited test data has been seeded. Recomended parameter for any bookId is 1 and any borrowerId is 1.
 <img width="1221" height="578" alt="image" src="https://github.com/user-attachments/assets/5db62302-2d29-4ad4-8c9a-1e9c255352c0" />
