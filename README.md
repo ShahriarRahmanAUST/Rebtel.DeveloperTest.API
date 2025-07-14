@@ -35,3 +35,11 @@ A launcher profile has been set for running the API project
 After running, a swagger url should appear in a browers. We can test the Apis from the browser. 
 Very limited test data has been seeded. Recomended parameter for any bookId is 1 and any borrowerId is 1.
 <img width="1221" height="578" alt="image" src="https://github.com/user-attachments/assets/5db62302-2d29-4ad4-8c9a-1e9c255352c0" />
+
+** Unit test and Integration test :
+Unit test project : Rebtel.DeveloperTest.SL.UnitTest
+Integration test project : Rebtel.DeveloperTest.SL.IntegrationTest
+
+**Warm-Up tasks :
+
+Those task can be found as a static class inside Rebtel.DeveloperTest.WarmUpTasks. Set up a test project Rebtel.DeveloperTest.WarmUpTasks.UnitTest to test the methods
