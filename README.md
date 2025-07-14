@@ -14,6 +14,9 @@
    Add-Migration InitialCreate
    Update-Database
 
+   <img width="1904" height="954" alt="image" src="https://github.com/user-attachments/assets/6b972658-fd77-42d8-bd44-7ab61bb8b79a" />
+
+
 
 **Run the application and testing the APIs
 A launcher profile has been set for running the API project 
