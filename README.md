@@ -35,6 +35,9 @@ Very limited test data has been seeded. Recomended parameter for any bookId is 1
 ** Unit test and Integration test :
 Unit test project : Rebtel.DeveloperTest.SL.UnitTest
 Integration test project : Rebtel.DeveloperTest.SL.IntegrationTest
+Funtional test project : Rebtel.DeveloperTest.API.FunctionalTest (We need to run GPRC server)
+<img width="1058" height="430" alt="image" src="https://github.com/user-attachments/assets/dfe50dad-3afe-4afe-ae4b-cfc0e5bee5ec" />
+
 
 **Warm-Up tasks :
 
