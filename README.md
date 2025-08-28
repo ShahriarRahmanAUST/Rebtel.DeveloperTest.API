@@ -15,7 +15,9 @@
 1)Open Tools > NuGet Package Manager > Package Manager Console
 2)Run the following command on Rebtel.DeveloperTest.DAL
    a) Install-Package Microsoft.EntityFrameworkCore.Tools
+   
    b) Add-Migration InitialCreate
+   
    c) Update-Database
 
    <img width="1904" height="954" alt="image" src="https://github.com/user-attachments/assets/6b972658-fd77-42d8-bd44-7ab61bb8b79a" />
