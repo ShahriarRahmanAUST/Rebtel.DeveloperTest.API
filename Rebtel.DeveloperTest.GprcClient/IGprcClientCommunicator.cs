@@ -2,7 +2,7 @@
 
 namespace Rebtel.DeveloperTest.GprcClient;
 
-public interface IClientClass
+public interface IGprcClientCommunicator
 {
     Task<BookDetailsInfoList> GetMaxBook();
     Task<BorrowerDetailsInfoList> GetMaxBorrower(DateTime startDate, DateTime endDate);

@@ -54,7 +54,6 @@ namespace Rebtel.DeveloperTest.BLL
             return returnedbookList;
         }
 
-
         public async Task<List<BookDto>> BookListByBorrower(int borrowerId, int bookIdtoExclude)
         {
             var histories = LibraryContext.BorrowerHistories.Where(x => x.BorrowerId == borrowerId)

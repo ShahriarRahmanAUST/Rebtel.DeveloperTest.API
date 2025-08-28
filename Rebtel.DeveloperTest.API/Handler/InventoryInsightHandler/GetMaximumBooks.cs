@@ -7,9 +7,9 @@ namespace Rebtel.DeveloperTest.API.Handler.InventoryInsightHandler
 {
     public class GetMaximumBooks : IRequestHandler<BookRequest, BookDetailsInfoList>
     {
-        private readonly IClientClass _clientClass;
+        private readonly IGprcClientCommunicator _clientClass;
 
-        public GetMaximumBooks(IClientClass clientClass)
+        public GetMaximumBooks(IGprcClientCommunicator clientClass)
         {
             _clientClass = clientClass;
         }

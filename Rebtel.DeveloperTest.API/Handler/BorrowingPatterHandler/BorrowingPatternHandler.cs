@@ -4,7 +4,7 @@ using Rebtel.DeveloperTest.GprcClient;
 
 namespace Rebtel.DeveloperTest.API.Handler.BorrowingPatterHandler;
 
-public class BorrowingPatternHandler(IClientClass clientClass) : IRequestHandler<BorrowingPatternHandlerRequest, BookDetailsInfoList>
+public class BorrowingPatternHandler(IGprcClientCommunicator clientClass) : IRequestHandler<BorrowingPatternHandlerRequest, BookDetailsInfoList>
 {
     public async Task<BookDetailsInfoList> Handle(BorrowingPatternHandlerRequest request, CancellationToken cancellationToken)
     {

@@ -5,7 +5,7 @@ using Rebtel.DeveloperTest.GprcClient;
 
 namespace Rebtel.DeveloperTest.API.Handler.BorrowerHandler
 {
-    public class MostFrequentBorrowerHandler(IClientClass clientClass)
+    public class MostFrequentBorrowerHandler(IGprcClientCommunicator clientClass)
         : IRequestHandler<MostFrequentBorrowerRequest, BorrowerDetailsInfoList>
     {
         public async Task<BorrowerDetailsInfoList> Handle(MostFrequentBorrowerRequest request,
@@ -15,7 +15,7 @@ namespace Rebtel.DeveloperTest.API.Handler.BorrowerHandler
         }
     }
 
-    public class BorrowerReadingRateHandler(IClientClass clientClass)
+    public class BorrowerReadingRateHandler(IGprcClientCommunicator clientClass)
         : IRequestHandler<BorrowerReadingRateRequest, BorrowerReadingRate>
     {
         public async Task<BorrowerReadingRate> Handle(BorrowerReadingRateRequest request,
