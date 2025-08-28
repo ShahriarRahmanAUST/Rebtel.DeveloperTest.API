@@ -1,0 +1,39 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GprcServer";
+
+package borrower;
+
+import "google/protobuf/timestamp.proto";
+
+service BorrowerDetails{
+	//sends book info
+	rpc MostBorrower(BookBorrowTimeframe) returns (BorrowerDetailsInfoList);
+	rpc CalculateBorrowerReadingRate(BorrowerRequest) returns (BorrowerReadingRate);
+}
+
+// The request message containing the user's name.
+message BorrowerRequest {
+  int32 borrowerId = 1;
+}
+
+message BorrowerReadingRate {
+   int32 borrowerId = 1;
+   int32 borrowerReadingRatePagePerDay = 2;
+}
+
+
+message BorrowerDetailsInfo{
+	int32 borrowerId = 1;
+	string name = 2;
+	string email = 3;	
+} 
+
+message BookBorrowTimeframe{
+	google.protobuf.Timestamp startDate = 1;
+	google.protobuf.Timestamp endDate = 2;
+}
+
+message BorrowerDetailsInfoList{
+	repeated BorrowerDetailsInfo borrowerDetailsInfoList = 1;	
+}

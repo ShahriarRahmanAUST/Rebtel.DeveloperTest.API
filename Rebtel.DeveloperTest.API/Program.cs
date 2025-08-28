@@ -1,16 +1,13 @@
 using MediatR;
 using Rebtel.DeveloperTest.API.Logger;
-using Rebtel.DeveloperTest.BLL;
-using Rebtel.DeveloperTest.SL;
+using Rebtel.DeveloperTest.GprcClient;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-DbContextFactory dbContextFactory = new DbContextFactory();
-dbContextFactory.RegisterDBContext(builder.Services);
-builder.Services.AddSingleton<IBookLogic, BooksLogic>();
-builder.Services.AddSingleton<IBorrowerLogic, BorrowerLogic>();
+builder.Services.AddSingleton<IClientClass, ClientClass>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -38,4 +35,6 @@ app.MapControllers();
 
 app.Run();
 
-public partial class Program { }
+public partial class Program
+{
+}

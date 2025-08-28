@@ -1,6 +1,6 @@
-﻿namespace Rebtel.DeveloperTest.SL
+﻿namespace Rebtel.DeveloperTest.SL.DTO
 {
-    public class BorrowerSL
+    public record BorrowerDto
     {
         public int BorrowerId { get; set; }
         public string Name { get; set; }

@@ -1,6 +1,9 @@
-﻿public class Borrower
+﻿using Microsoft.EntityFrameworkCore;
+
+[Index(nameof(Email))]
+public record Borrower
 {
     public int BorrowerId { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public required string Name { get; set; }
+    public required string Email { get; set; }
 }

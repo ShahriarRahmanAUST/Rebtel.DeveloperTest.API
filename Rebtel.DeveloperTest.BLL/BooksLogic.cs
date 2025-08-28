@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Rebtel.DeveloperTest.SL.DTO;
+using Rebtel.DeveloperTest.SL.Interfaces;
 using System.Text.Json;
 
 namespace Rebtel.DeveloperTest.BLL
@@ -6,16 +9,18 @@ namespace Rebtel.DeveloperTest.BLL
     public class BooksLogic : IBookLogic
     {
         public readonly ILibraryContext LibraryContext;
+
         public BooksLogic(ILibraryContext libraryContext)
         {
             LibraryContext = libraryContext;
         }
 
-        public async Task<AvaiableBook> GetAvailableBook(int bookId)
+        public async Task<AvailableBookDto> GetAvailableBook(int bookId)
         {
             var book = await LibraryContext.Books.Where(x => x.BookId == bookId).FirstOrDefaultAsync();
-            if (book == null) return new AvaiableBook { TotalBook = 0, TotalBorrowerd = 0}; 
-            var totalBorrowed = await LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId && x.EndDate == null).ToListAsync();
+            if (book == null) return new AvailableBookDto { TotalBook = 0, TotalBorrowerd = 0 };
+            var totalBorrowed = await LibraryContext.BorrowerHistories
+                .Where(x => x.BookId == bookId && x.EndDate == null).ToListAsync();
             var totalBorrowedCount = 0;
             var xx = JsonSerializer.Serialize(LibraryContext.Books.ToList());
             if (totalBorrowed.Any())
@@ -23,44 +28,52 @@ namespace Rebtel.DeveloperTest.BLL
                 totalBorrowedCount = totalBorrowed.Count();
             }
 
-            return new AvaiableBook { BookId = bookId, TotalBook = book.NumberOfCopies, TotalBorrowerd = totalBorrowedCount };
+            return new AvailableBookDto
+                { BookId = bookId, TotalBook = book.NumberOfCopies, TotalBorrowerd = totalBorrowedCount };
         }
 
-        public async Task<BookSL> GetMaxBook()
+        public async Task<List<BookDto>> GetMaxBook()
         {
-            var maxBook = await LibraryContext.BorrowerHistories.GroupBy(b => b.BookId).OrderByDescending(x => x.Count()).Select(n => n.First().Book).Take(1).FirstOrDefaultAsync();
-            var json = JsonSerializer.Serialize(LibraryContext.BorrowerHistories.ToList());
-            var mapper = MapperConfig.Mapper;
-            return mapper.Map<BookSL>(maxBook);
-        }
+            var maxBook = await LibraryContext.BorrowerHistories.GroupBy(b => b.BookId)
+                .OrderByDescending(x => x.Count()).Select(g => new { bookId = g.Key, count = g.Count() }).ToListAsync();
 
-        public async Task<int> CalculateReadingRate(int bookId)
-        {
-            var borrowHistory = await LibraryContext.BorrowerHistories.Where(x => x.BookId == bookId).ToListAsync();
-            int totalDays = CalculateDays(borrowHistory);
-            if (totalDays == 0) return 0;
-            var book = await LibraryContext.Books.Where(x => x.BookId == bookId).FirstOrDefaultAsync();
-            if(book == null) return 0;
-            return (int)book.Pages / totalDays;
-        }
+            var maxValue = maxBook[0].count;
 
-        private int CalculateDays(List<BorrowerHistory> borrowHistories)
-        {
-            int totalDays = 0;
-
-            foreach (var borrowHistory in borrowHistories)
+            var bookList = maxBook.Where(x => x.count == maxValue).Select(x => x.bookId).ToList();
+            var books = await LibraryContext.Books.Where(r => bookList.Contains(r.BookId)).ToListAsync();
+            List<BookDto> returnedbookList = new List<BookDto>();
+            foreach (var book in books)
             {
-                DateTime endDate = DateTime.Now;
-                if (borrowHistory.EndDate != null)
+                returnedbookList.Add(new BookDto
                 {
-                    endDate = borrowHistory.EndDate.Value;
-                }
-
-                totalDays += (endDate - borrowHistory.StartDate).Days;
+                    Author = book.Author, BookId = book.BookId, Name = book.Name, NumberOfCopies = book.NumberOfCopies,
+                    Pages = book.Pages
+                });
             }
 
-            return totalDays;
+            return returnedbookList;
+        }
 
+
+        public async Task<List<BookDto>> BookListByBorrower(int borrowerId, int bookIdtoExclude)
+        {
+            var histories = LibraryContext.BorrowerHistories.Where(x => x.BorrowerId == borrowerId)
+                .Where(x => x.BookId != bookIdtoExclude).ToList();
+            var bookSLs = new List<BookDto>();
+            foreach (var borrowerHistory in histories)
+            {
+                var book = await LibraryContext.Books.Where(x => x.BookId == borrowerHistory.BookId)
+                    .FirstOrDefaultAsync();
+                if (book != null)
+                    bookSLs.Add(new BookDto
+                    {
+                        Author = book.Author, BookId = book.BookId, Name = book.Name,
+                        NumberOfCopies = book.NumberOfCopies,
+                        Pages = book.Pages
+                    });
+            }
+
+            return bookSLs;
         }
     }
 }

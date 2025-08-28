@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace Rebtel.DeveloperTest.SL.DTO;
 
-[Index(nameof(Author))]
-public record Book
+public record BookDto
 {
     public int BookId { get; set; }
     public string Name { get; set; }

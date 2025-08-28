@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace WarmUpTasks
+namespace Rebtel.DeveloperTest.WarmUpTasks
 {
-    public static class LibraryUtilty
+    public static class LibraryUtility
     {
         public static bool IsBookIdPowerOfTwo(int bookId)
         {
@@ -11,16 +11,15 @@ namespace WarmUpTasks
 
         public static string ReverseBookTitle(string title)
         {
-            if (title == null) return null;
-            char[] charArray = title.ToCharArray();
+            var charArray = title.ToCharArray();
             Array.Reverse(charArray);
             return new string(charArray);
         }
 
         public static string GenerateBookTitleReplicas(string title, int number)
         {
-            StringBuilder sb = new StringBuilder(title);
-            for (int i = 1; i < number; i++)
+            var sb = new StringBuilder(title);
+            for (var i = 1; i < number; i++)
             {
                 sb.Append(title);
             }
@@ -32,6 +31,5 @@ namespace WarmUpTasks
         {
             return Enumerable.Range(0, 100).Where(x => x % 2 != 0).ToList();
         }
-
     }
 }

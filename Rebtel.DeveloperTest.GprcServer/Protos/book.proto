@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GprcServer";
+
+package book;
+
+import "google/protobuf/empty.proto";
+
+service BookDetails{
+	rpc GetMaxBorrowedBook(google.protobuf.Empty) returns (BookDetailsInfoList);
+	rpc GetBorrowingPattern(BorrowingPatternRequest) returns (BookDetailsInfoList);	
+}
+
+message BorrowingPatternRequest
+{
+	int32 borrowerId = 1;
+	int32 bookToExcludeId = 2;
+}
+
+
+message BookDetailsInfo{
+	int32 bookId = 1;
+	string name = 2;
+	string author = 3;
+	int32 numberOfCopies = 4;
+	int32 pages = 5;
+}
+
+message BookDetailsInfoList{
+  repeated BookDetailsInfo bookDetailsInfoList = 1;
+}
+

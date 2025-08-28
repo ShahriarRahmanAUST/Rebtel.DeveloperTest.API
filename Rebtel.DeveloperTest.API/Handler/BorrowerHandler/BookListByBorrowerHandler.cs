@@ -1,20 +1,27 @@
-﻿using MediatR;
-using Rebtel.DeveloperTest.API.Handler.BookHandler;
-using Rebtel.DeveloperTest.BLL;
-using Rebtel.DeveloperTest.SL;
+﻿using GPRCClientDLL;
+using MediatR;
+using Rebtel.DeveloperTest.GprcClient;
+
 
 namespace Rebtel.DeveloperTest.API.Handler.BorrowerHandler
 {
-    public class BookListByBorrowerHandler : IRequestHandler<BorrowerRequest, List<BookSL>>
+    public class MostFrequentBorrowerHandler(IClientClass clientClass)
+        : IRequestHandler<MostFrequentBorrowerRequest, BorrowerDetailsInfoList>
     {
-        IBorrowerLogic _borrowerLogic;
-        public BookListByBorrowerHandler(IBorrowerLogic borrowerLogic)
+        public async Task<BorrowerDetailsInfoList> Handle(MostFrequentBorrowerRequest request,
+            CancellationToken cancellationToken)
         {
-            _borrowerLogic = borrowerLogic;
+            return await clientClass.GetMaxBorrower(request.StartDate, request.EndDate);
         }
-        public async Task<List<BookSL>> Handle(BorrowerRequest request, CancellationToken cancellationToken)
+    }
+
+    public class BorrowerReadingRateHandler(IClientClass clientClass)
+        : IRequestHandler<BorrowerReadingRateRequest, BorrowerReadingRate>
+    {
+        public async Task<BorrowerReadingRate> Handle(BorrowerReadingRateRequest request,
+            CancellationToken cancellationToken)
         {
-            return await _borrowerLogic.BookListByBorrower(request.BorrowerId, request.BookIdToExclude);
+            return await clientClass.CalculateBorrowerReadingRate(request.BorrowerId);
         }
     }
 }
