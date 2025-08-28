@@ -16,5 +16,4 @@ namespace Rebtel.DeveloperTest.API.FunctionalTest
             builder.UseEnvironment("Test");
         }
     }
-    
 }

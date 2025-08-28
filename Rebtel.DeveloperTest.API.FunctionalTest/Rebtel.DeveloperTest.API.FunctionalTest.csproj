@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rebtel.DeveloperTest.API\Rebtel.DeveloperTest.API.csproj" />
+    <ProjectReference Include="..\Rebtel.DeveloperTest.BLL\Rebtel.DeveloperTest.SL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

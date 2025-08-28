@@ -45,7 +45,7 @@ namespace Rebtel.DeveloperTest.API.Controllers
                     return NoContent();
                 }
 
-                return Ok($"{bookDetailsInfoList}");
+                return Ok(bookDetailsInfoList);
             }
             catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
             {
