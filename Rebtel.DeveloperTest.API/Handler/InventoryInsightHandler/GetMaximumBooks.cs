@@ -15,7 +15,7 @@ namespace Rebtel.DeveloperTest.API.Handler.InventoryInsightHandler
         }
         public async Task<BookDetailsInfoList> Handle(BookRequest request, CancellationToken cancellationToken)
         {
-            return await _clientClass.GetMaxBook();
+            return await _clientClass.GetMaxBook(cancellationToken);
         }
     }
 }

@@ -19,7 +19,7 @@ public class BookService : BookDetails.BookDetailsBase
 
     public override async Task<BookDetailsInfoList> GetMaxBorrowedBook(Empty request, ServerCallContext context)
     {
-        var bookLIst = await this.bookLogic.GetMaxBook();
+        var bookLIst = await this.bookLogic.GetMaxBook(context.CancellationToken);
 
         BookDetailsInfoList bookDetailsInfoList = new BookDetailsInfoList();
 
@@ -38,32 +38,11 @@ public class BookService : BookDetails.BookDetailsBase
         return await Task.FromResult(bookDetailsInfoList);
     }
 
-    //public override async Task<BookDetailsInfoList> GetMaxBorrowedBook(HelloRequest request, ServerCallContext context)
-    //{
-    //    var bookLIst = await this.bookLogic.GetMaxBook();
-
-    //    BookDetailsInfoList bookDetailsInfoList = new BookDetailsInfoList();
-
-    //    foreach (var bookDto in bookLIst)
-    //    {
-    //        bookDetailsInfoList.BookDetailsInfoList_.Add(new BookDetailsInfo
-    //        {
-    //            Author = bookDto.Author,
-    //            BookId = bookDto.BookId,
-    //            Name = bookDto.Name,
-    //            NumberOfCopies = bookDto.NumberOfCopies,
-    //            Pages = bookDto.Pages
-    //        });
-    //    }
-
-    //    return await Task.FromResult(bookDetailsInfoList);
-    //}
-
     public override async Task<BookDetailsInfoList> GetBorrowingPattern(BorrowingPatternRequest request,
         ServerCallContext context)
     {
-        var bookLIst = await this.bookLogic.BookListByBorrower(request.BorrowerId, request.BookToExcludeId);
-        BookDetailsInfoList bookDetailsInfoList = new BookDetailsInfoList();
+        var bookLIst = await this.bookLogic.BookListByBorrower(request.BorrowerId, request.BookToExcludeId, context.CancellationToken);
+        var bookDetailsInfoList = new BookDetailsInfoList();
 
         foreach (var bookDto in bookLIst)
         {

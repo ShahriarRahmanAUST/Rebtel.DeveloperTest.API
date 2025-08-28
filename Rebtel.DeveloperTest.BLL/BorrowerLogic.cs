@@ -16,25 +16,26 @@ namespace Rebtel.DeveloperTest.SL
             LibraryContext = libraryContext;
         }
 
-        public async Task<List<BorrowerDto>> MaxBookBorrower(DateTime startDate, DateTime endDate)
+        public async Task<List<BorrowerDto>> MaxBookBorrower(DateTime startDate, DateTime endDate,
+            CancellationToken contextCancellationToken)
         {
             var maxBorrower = await LibraryContext.BorrowerHistories
                 .Where(x => x.EndDate < endDate && x.StartDate > startDate).GroupBy(b => b.BorrowerId)
                 .OrderByDescending(x => x.Count()).Select(g => new { borrowerId = g.Key, count = g.Count() })
-                .ToListAsync();
+                .ToListAsync(contextCancellationToken);
             var maxValue = maxBorrower[0].count;
             var borrowerList = maxBorrower.Where(x => x.count == maxValue).Select(x => x.borrowerId).ToList();
             var borrowers = await LibraryContext.Borrowers.Where(r => borrowerList.Contains(r.BorrowerId))
-                .ToListAsync();
+                .ToListAsync(contextCancellationToken);
 
             return borrowers.Select(borrower => new BorrowerDto()
                 { BorrowerId = borrower.BorrowerId, Email = borrower.Email, Name = borrower.Name }).ToList();
         }
 
-        public async Task<int> CalculateReadingRate(int borrowerId)
+        public async Task<int> CalculateReadingRate(int borrowerId, CancellationToken contextCancellationToken)
         {
             var borrowHistory =
-                await LibraryContext.BorrowerHistories.Where(x => x.BorrowerId == borrowerId).ToListAsync();
+                await LibraryContext.BorrowerHistories.Where(x => x.BorrowerId == borrowerId).ToListAsync(contextCancellationToken);
             return CalculateDays(borrowHistory);
         }
 

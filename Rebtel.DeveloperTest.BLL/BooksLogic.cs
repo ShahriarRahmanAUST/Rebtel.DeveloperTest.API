@@ -32,16 +32,15 @@ namespace Rebtel.DeveloperTest.BLL
                 { BookId = bookId, TotalBook = book.NumberOfCopies, TotalBorrowerd = totalBorrowedCount };
         }
 
-        public async Task<List<BookDto>> GetMaxBook()
+        public async Task<List<BookDto>> GetMaxBook(CancellationToken contextCancellationToken)
         {
             var maxBook = await LibraryContext.BorrowerHistories.GroupBy(b => b.BookId)
-                .OrderByDescending(x => x.Count()).Select(g => new { bookId = g.Key, count = g.Count() }).ToListAsync();
-
+                .OrderByDescending(x => x.Count()).Select(g => new { bookId = g.Key, count = g.Count() }).ToListAsync(contextCancellationToken);
+            if (maxBook.Count == 0) return [];
             var maxValue = maxBook[0].count;
-
             var bookList = maxBook.Where(x => x.count == maxValue).Select(x => x.bookId).ToList();
-            var books = await LibraryContext.Books.Where(r => bookList.Contains(r.BookId)).ToListAsync();
-            List<BookDto> returnedbookList = new List<BookDto>();
+            var books = await LibraryContext.Books.Where(r => bookList.Contains(r.BookId)).ToListAsync(contextCancellationToken);
+            var returnedbookList = new List<BookDto>();
             foreach (var book in books)
             {
                 returnedbookList.Add(new BookDto
@@ -54,7 +53,8 @@ namespace Rebtel.DeveloperTest.BLL
             return returnedbookList;
         }
 
-        public async Task<List<BookDto>> BookListByBorrower(int borrowerId, int bookIdtoExclude)
+        public async Task<List<BookDto>> BookListByBorrower(int borrowerId, int bookIdtoExclude,
+            CancellationToken contextCancellationToken)
         {
             var histories = LibraryContext.BorrowerHistories.Where(x => x.BorrowerId == borrowerId)
                 .Where(x => x.BookId != bookIdtoExclude).ToList();
@@ -62,7 +62,7 @@ namespace Rebtel.DeveloperTest.BLL
             foreach (var borrowerHistory in histories)
             {
                 var book = await LibraryContext.Books.Where(x => x.BookId == borrowerHistory.BookId)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync(contextCancellationToken);
                 if (book != null)
                     bookSLs.Add(new BookDto
                     {

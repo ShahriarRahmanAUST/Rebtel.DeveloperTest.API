@@ -11,7 +11,7 @@ namespace Rebtel.DeveloperTest.API.Handler.BorrowerHandler
         public async Task<BorrowerDetailsInfoList> Handle(MostFrequentBorrowerRequest request,
             CancellationToken cancellationToken)
         {
-            return await clientClass.GetMaxBorrower(request.StartDate, request.EndDate);
+            return await clientClass.GetMaxBorrower(request.StartDate, request.EndDate, cancellationToken);
         }
     }
 
@@ -21,7 +21,7 @@ namespace Rebtel.DeveloperTest.API.Handler.BorrowerHandler
         public async Task<BorrowerReadingRate> Handle(BorrowerReadingRateRequest request,
             CancellationToken cancellationToken)
         {
-            return await clientClass.CalculateBorrowerReadingRate(request.BorrowerId);
+            return await clientClass.CalculateBorrowerReadingRate(request.BorrowerId, cancellationToken);
         }
     }
 }

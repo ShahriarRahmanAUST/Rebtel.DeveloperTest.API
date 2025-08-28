@@ -1,7 +1,5 @@
 ﻿
-using Newtonsoft.Json;
-
-namespace Rebtel.DeveloperTest.SL.UnitTest
+namespace Rebtel.DeveloperTest.SL.IntegrationTest
 {
     [TestClass]
     public sealed class BorrowerLogicTest
@@ -17,7 +15,7 @@ namespace Rebtel.DeveloperTest.SL.UnitTest
         [TestMethod]
         public void BookListByBorrowerShouldReturnListOfBooksAndExcluedOneBook()
         {
-            var result = _sut.CalculateReadingRate(1);
+            var result = _sut.CalculateReadingRate(1, CancellationToken.None);
             Assert.AreEqual(result.Result, 6);
         }
     }

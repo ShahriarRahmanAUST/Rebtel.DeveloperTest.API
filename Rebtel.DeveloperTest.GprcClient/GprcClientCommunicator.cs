@@ -18,36 +18,44 @@ namespace Rebtel.DeveloperTest.GprcClient
             _borrowerDetailsClient = new BorrowerDetails.BorrowerDetailsClient(channel);
             _bookDetailsClient = new BookDetails.BookDetailsClient(channel);
         }
-        
-        public async Task<BorrowerReadingRate> CalculateBorrowerReadingRate(int borrowerId)
+
+        public async Task<BorrowerReadingRate> CalculateBorrowerReadingRate(int borrowerId,
+            CancellationToken cancellationToken)
         {
             return await _borrowerDetailsClient.CalculateBorrowerReadingRateAsync(new BorrowerRequest
-                { BorrowerId = borrowerId });
+                    { BorrowerId = borrowerId }, cancellationToken: cancellationToken,
+                deadline: DateTime.UtcNow.AddSeconds(5));
         }
 
-        public Task<BookDetailsInfoList> GetBorrowingPattern(int borrowerId, int bookIdToExclude)
+        public Task<BookDetailsInfoList> GetBorrowingPattern(int borrowerId, int bookIdToExclude,
+            CancellationToken cancellationToken)
         {
             var getBorrowingPattern = _bookDetailsClient.GetBorrowingPattern(new BorrowingPatternRequest
-                { BorrowerId = borrowerId, BookToExcludeId = bookIdToExclude });
+                    { BorrowerId = borrowerId, BookToExcludeId = bookIdToExclude },
+                cancellationToken: cancellationToken,
+                deadline: DateTime.UtcNow.AddSeconds(5));
 
             return Task.FromResult(getBorrowingPattern);
         }
 
-        public Task<BookDetailsInfoList> GetMaxBook()
+        public Task<BookDetailsInfoList> GetMaxBook(CancellationToken cancellationToken)
         {
-            var getMaximumBorrowerBook = _bookDetailsClient.GetMaxBorrowedBook(new Empty());
-
+            var getMaximumBorrowerBook = _bookDetailsClient.GetMaxBorrowedBook(new Empty(),
+                cancellationToken: cancellationToken, deadline: DateTime.UtcNow.AddSeconds(5));
             return Task.FromResult(getMaximumBorrowerBook);
         }
 
-        public async Task<BorrowerDetailsInfoList> GetMaxBorrower(DateTime startDate, DateTime endDate)
+        public async Task<BorrowerDetailsInfoList> GetMaxBorrower(DateTime startDate, DateTime endDate,
+            CancellationToken cancellationToken)
         {
             var startDateTimeStamp = Timestamp.FromDateTimeOffset(startDate);
             var endDateTimeStamp = Timestamp.FromDateTimeOffset(endDate);
 
             var borrowerDetailsInfoList = await _borrowerDetailsClient.MostBorrowerAsync(new BookBorrowTimeframe
-                { StartDate = startDateTimeStamp, EndDate = endDateTimeStamp });
-            
+                    { StartDate = startDateTimeStamp, EndDate = endDateTimeStamp },
+                cancellationToken: cancellationToken,
+                deadline: DateTime.UtcNow.AddSeconds(5));
+
             return borrowerDetailsInfoList;
         }
     }

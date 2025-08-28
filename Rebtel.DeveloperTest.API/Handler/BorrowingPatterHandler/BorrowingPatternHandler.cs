@@ -8,6 +8,6 @@ public class BorrowingPatternHandler(IGprcClientCommunicator clientClass) : IReq
 {
     public async Task<BookDetailsInfoList> Handle(BorrowingPatternHandlerRequest request, CancellationToken cancellationToken)
     {
-       return await clientClass.GetBorrowingPattern(request.BorrowerId, request.BookIdToExclude);
+       return await clientClass.GetBorrowingPattern(request.BorrowerId, request.BookIdToExclude, cancellationToken);
     }
 }

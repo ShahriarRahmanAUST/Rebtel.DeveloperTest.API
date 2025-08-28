@@ -22,7 +22,7 @@ public class BorrowerService : BorrowerDetails.BorrowerDetailsBase
         ServerCallContext context)
     {
         var borrowerList =
-            await _borrowerLogic.MaxBookBorrower(request.StartDate.ToDateTime(), request.EndDate.ToDateTime());
+            await _borrowerLogic.MaxBookBorrower(request.StartDate.ToDateTime(), request.EndDate.ToDateTime(), context.CancellationToken);
 
         var borrowerDetailsInfoList = new BorrowerDetailsInfoList();
         foreach (var borrower in borrowerList)
@@ -37,7 +37,7 @@ public class BorrowerService : BorrowerDetails.BorrowerDetailsBase
     public override async Task<BorrowerReadingRate> CalculateBorrowerReadingRate(BorrowerRequest request,
         ServerCallContext context)
     {
-        var readingRate = await _borrowerLogic.CalculateReadingRate(request.BorrowerId);
+        var readingRate = await _borrowerLogic.CalculateReadingRate(request.BorrowerId, context.CancellationToken);
         return new BorrowerReadingRate { BorrowerId = request.BorrowerId, BorrowerReadingRatePagePerDay = readingRate };
     }
 }
