@@ -5,6 +5,10 @@
 1) Clone the repository.
 2) Open in Visual studio 2022 (or later). Mostly used .net 9.0
 3) Restore Nuget.
+4) Make sure to set "Start" on two projects :
+
+   <img width="1415" height="809" alt="image" src="https://github.com/user-attachments/assets/0c87f2f7-46df-4381-9fd3-16fe11929102" />
+
 
 **Setting up Database :
 
